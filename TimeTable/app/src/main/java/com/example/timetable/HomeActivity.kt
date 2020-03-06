@@ -1,10 +1,10 @@
 package com.example.timetable
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 
 class HomeActivity : Fragment(){

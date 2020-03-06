@@ -3,30 +3,23 @@ package com.example.timetable
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import android.app.FragmentManager
-import android.app.Fragment
-//import androidx.fragment.app.Fragment
-//import androidx.fragment.app.FragmentManager
-//import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
-import com.example.timetable.ui.main.SectionsPagerAdapter
-import com.google.android.material.tabs.TabLayout
+import android.support.v7.app.AppCompatActivity
+
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
 
 class MainActivity : AppCompatActivity() {
-
+    private val Tag = "Home"
     var isOpen= false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
+        val mFragmentManager: FragmentManager = supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = mFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame, TabFragment2(), Tag).commit()
 
         val fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open)
         val fabClose = AnimationUtils.loadAnimation(this,R.anim.fab_close)
@@ -90,37 +83,3 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-    inner class SectionPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm){
-        override fun getItem(position:Int): Fragment? {
-            when(position) {
-                0 -> {
-                    return HomeActivity()
-                }
-
-
-                1 -> {
-                    return NotesActivity()
-                }
-
-
-
-            }
-
-            return null
-
-        }
-
-        override fun getCount(): Int {
-            return 2
-        }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            when (position) {
-                0 -> {return "Time Table"}
-                1 -> {return "Notes "}
-
-                else -> return null
-            }
-        }
-    }
-}
