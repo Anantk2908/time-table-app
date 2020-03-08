@@ -3,10 +3,7 @@ package com.example.timetable
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import android.support.v7.app.AppCompatActivity
-
-import kotlinx.android.synthetic.main.activity_main.*
-import androidx.fragment.app.FragmentManager
+import android.support.v7.app.AppCompatActivity import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 
 
