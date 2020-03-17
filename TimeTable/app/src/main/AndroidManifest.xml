@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddNoteActivity"></activity>
+        <activity android:name=".AddNoteActivity"
+            android:label="Add Notes"
+            android:parentActivityName=".SecondFragment"/>
+        <activity android:name=".FirstFragment"/>
+        <activity android:name=".SecondFragment"
+            android:label="Notes List"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
