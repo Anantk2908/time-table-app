@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.database.sqlite.SQLiteQueryBuilder
 import android.widget.Toast
 import com.google.android.maps.Projection
 
@@ -57,9 +58,20 @@ class DbManager {
     }
 
     fun Query(projection:Array<String>, selection:String, selectionArgs:Array<String>, sorOrder:String):Cursor{
-        
-
+        val qb = SQLiteQueryBuilder();
+        qb.tables = dbTable
+        val cursor = qb.query(sqlDB,projection,selection,selectionArgs,null,null,sorOrder)
+        return cursor
     }
 
+    fun delete(selection:String, selectionArgs:Array<String>):Int{
+        val count = sqlDB!!.delete(dbTable,selection,selectionArgs)
+        return count
+    }
+
+    fun update(values: ContentValues, selection: String, selectionArgs: Array<String>):Int{
+        val count = sqlDB!!.update(dbTable,values,selection,selectionArgs)
+        return count
+    }
 
 }
