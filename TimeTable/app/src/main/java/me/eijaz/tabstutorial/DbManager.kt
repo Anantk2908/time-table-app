@@ -1,5 +1,13 @@
 package me.eijaz.tabstutorial
 
+import android.content.ContentValues
+import android.content.Context
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+import android.widget.Toast
+import com.google.android.maps.Projection
+
 class DbManager {
 
     // database name
@@ -15,6 +23,43 @@ class DbManager {
     //database version
     var dbVersion = 1
 
-    val sqlCreateTable = "CREATE TABLE"
+    val sqlCreateTable = "CREATE TABLE IF NOTE EXISTS"+dbTable+"("+colID+"INTER PRIMARY KEY ,"+ colTitle+"TEXT,"+colDes+"TEXT);"
+
+    var sqlDB:SQLiteDatabase?=null
+
+    constructor(context: Context){
+        var db = DatabaseHelperNotes(context)
+        sqlDB = db.writableDatabase
+    }
+
+    inner class DatabaseHelperNotes:SQLiteOpenHelper{
+        var context: Context?=null
+
+        constructor(context: Context):super(context,dbName,null,dbVersion ){
+            this.context= context
+
+        }
+
+        override fun onCreate(db: SQLiteDatabase?) {
+            db!!.execSQL(sqlCreateTable)
+            Toast.makeText(this.context,"database created",Toast.LENGTH_SHORT).show()
+
+        }
+
+        override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
+            db!!.execSQL("Drop table if exists" + dbTable )
+        }
+    }
+
+    fun insert(values: ContentValues):Long{
+        val ID = sqlDB!!.insert(dbTable,"",values)
+        return ID
+    }
+
+    fun Query(projection:Array<String>, selection:String, selectionArgs:Array<String>, sorOrder:String):Cursor{
+        
+
+    }
+
 
 }
