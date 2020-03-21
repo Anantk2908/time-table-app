@@ -18,8 +18,7 @@ class SecondFragment : Fragment() {
 
     var listNotes = ArrayList<Note>()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater!!.inflate(R.layout.fragment_second, container, false)
 
@@ -49,7 +48,7 @@ class SecondFragment : Fragment() {
         var myNotesAdapter = MyNotesAdapter(this, listNotes)
     }
 
-     inner class MyNotesAdapter() : BaseAdapter {
+    inner class MyNotesAdapter() : BaseAdapter {
 
          var listNotesArray = ArrayList<Note>()
          var context:Context?= null
