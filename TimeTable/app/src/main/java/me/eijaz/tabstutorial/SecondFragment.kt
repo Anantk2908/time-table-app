@@ -2,6 +2,7 @@ package me.eijaz.tabstutorial
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -68,8 +69,16 @@ class SecondFragment : Fragment() {
             //delete button click
 
             myView.deleteBtn.setOnClickListener{
-                var dbManager = DbManager(this.context!!)
+                var dbManager = DbManager(context!!)
+                val selectionArgs = arrayOf(myNote.nodeID.toString())
+                dbManager.delete("ID=?", selectionArgs)
+                LoadQuery("%")
 
+
+            }
+            //edit and update button
+            myView.editBtn.setOnClickListener{
+                GoToUpdateFun(myNote)
             }
 
 
@@ -87,6 +96,14 @@ class SecondFragment : Fragment() {
         override fun getCount(): Int {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
+
+    }
+
+    private fun GoToUpdateFun(myNote: Note) {
+        var intent = Intent(   this ,AddNoteActivity::class.java)
+        intent.putExtra("ID", myNote.nodeName)
+        intent.putExtra
+
 
     }
 
