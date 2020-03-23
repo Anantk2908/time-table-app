@@ -3,15 +3,13 @@ package me.eijaz.tabstutorial
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.support.v4.app.Fragment
-import android.support.v7.widget.DialogTitle
-import android.util.EventLogTags
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import kotlinx.android.synthetic.main.row.view.*
+import java.text.FieldPosition
 
 
 class SecondFragment : Fragment() {
@@ -27,11 +25,11 @@ class SecondFragment : Fragment() {
 
     private fun LoadQuery(title: String) {
         val dbManager = DbManager(this)
-        val projections = arrayOf("ID", "Title", "Description" )
+        val projections = arrayOf("ID", "Title", "Description")
         val selectionArgs = arrayOf(title)
-        val cursor = dbManager.Query(projections,"Title like ?", selectionArgs,"Title")
+        val cursor = dbManager.Query(projections, "Title like ?", selectionArgs, "Title")
         listNotes.clear()
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
 
             do {
                 val ID = cursor.getInt(cursor.getColumnIndex("ID"))
@@ -39,29 +37,42 @@ class SecondFragment : Fragment() {
                 val Description = cursor.getString(cursor.getColumnIndex("Description"))
 
                 listNotes.add(Note(ID, Title, Description))
-            }while (cursor.moveToNext())
+            } while (cursor.moveToNext())
 
 
-            }
         }
-
-        var myNotesAdapter = MyNotesAdapter(this, listNotes)
     }
 
-    inner class MyNotesAdapter() : BaseAdapter {
+    var myNotesAdapter = MyNotesAdapter(this, listNotes)
 
-         var listNotesArray = ArrayList<Note>()
-         var context:Context?= null
 
-         constructor(context: Context,listNotesArray: ArrayList<Note>) : super() {
-             this.listNotesArray = listNotesArray
-             this.context = context
-         }
+    inner class MyNotesAdapter : BaseAdapter {
+
+        var listNotesAdapter = ArrayList<Note>()
+        var context:Context?=null
+
+         constructor(context: SecondFragment, listNotesAdapter: ArrayList<Note>) : super() {
+            this.listNotesAdapter = listNotesAdapter
+            this.context = SecondFragment
+        }
 
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-            var myView = layoutInflater.inflate()
+            //inflate row.xml
+
+            var myView = layoutInflater.inflate(R.layout.row,null)
+            var myNote = listNotesAdapter[position]
+            myView.titleTv.text = myNote.nodeName
+            myView.descTv.text = myNote.nodeDes
+            //delete button click
+
+            myView.deleteBtn.setOnClickListener{
+                var dbManager = DbManager(this.context!!)
+
+            }
+
+
 
         }
 
@@ -77,23 +88,8 @@ class SecondFragment : Fragment() {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
 
-        override fun writeToParcel(parcel: Parcel, flags: Int) {
-
-        }
-
-        override fun describeContents(): Int {
-            return 0
-        }
-
-        companion object CREATOR : Parcelable.Creator<MyNotesAdapter> {
-            override fun createFromParcel(parcel: Parcel): MyNotesAdapter {
-                return MyNotesAdapter(parcel)
-            }
-
-            override fun newArray(size: Int): Array<MyNotesAdapter?> {
-                return arrayOfNulls(size)
-            }
-        }
     }
 
 }
+
+

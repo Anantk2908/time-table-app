@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.database.sqlite.SQLiteQueryBuilder
 import android.widget.Toast
-import com.google.android.maps.Projection
 
 class DbManager {
 
@@ -28,7 +27,7 @@ class DbManager {
 
     var sqlDB:SQLiteDatabase?=null
 
-    constructor(context: Context){
+    constructor(context: SecondFragment){
         var db = DatabaseHelperNotes(context)
         sqlDB = db.writableDatabase
     }
