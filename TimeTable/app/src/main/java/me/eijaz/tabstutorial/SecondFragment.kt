@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.row.view.*
-import java.text.FieldPosition
 
 
 class SecondFragment : Fragment() {
@@ -54,7 +53,8 @@ class SecondFragment : Fragment() {
 
          constructor(context: SecondFragment, listNotesAdapter: ArrayList<Note>) : super() {
             this.listNotesAdapter = listNotesAdapter
-            this.context = SecondFragment
+            this.context= context
+
         }
 
 
@@ -69,7 +69,7 @@ class SecondFragment : Fragment() {
             //delete button click
 
             myView.deleteBtn.setOnClickListener{
-                var dbManager = DbManager(context!!)
+                var dbManager = DbManager(this, context!!)
                 val selectionArgs = arrayOf(myNote.nodeID.toString())
                 dbManager.delete("ID=?", selectionArgs)
                 LoadQuery("%")
@@ -101,9 +101,9 @@ class SecondFragment : Fragment() {
 
     private fun GoToUpdateFun(myNote: Note) {
         var intent = Intent(   this ,AddNoteActivity::class.java)
-        intent.putExtra("ID", myNote.nodeName)
-        intent.putExtra
-
+        intent.putExtra("ID", myNote.nodeID)
+        intent.putExtra("name", myNote.nodeName)
+        
 
     }
 
