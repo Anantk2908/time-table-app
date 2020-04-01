@@ -36,9 +36,8 @@
           <option name="apiVersion" value="1.1" />
           <option name="pluginOptions">
             <array>
-              <option value="plugin:org.jetbrains.kotlin.android:experimental=false" />
-              <option value="plugin:org.jetbrains.kotlin.android:enabled=true" />
-              <option value="plugin:org.jetbrains.kotlin.android:defaultCacheImplementation=hashMap" />
+              <option value="plugin:org.jetbrains.kotlin.android:package=me.eijaz.tabstutorial" />
+              <option value="plugin:org.jetbrains.kotlin.android:variant=main;/home/anant/repos/time-table-app/TimeTable/app/src/main/res" />
             </array>
           </option>
           <option name="pluginClasspaths">
