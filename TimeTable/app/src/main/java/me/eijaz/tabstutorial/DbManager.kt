@@ -27,7 +27,7 @@ class DbManager {
 
     var sqlDB:SQLiteDatabase?=null
 
-    constructor(context: SecondFragment){
+    constructor(context: Context){
         var db = DatabaseHelperNotes(context)
         sqlDB = db.writableDatabase
     }
@@ -36,7 +36,7 @@ class DbManager {
 
         var context: Context? = null
 
-        constructor(context: SecondFragment):super(context, dbName, null, dbVersion){
+        constructor(context: Context):super(context, dbName, null, dbVersion){
 
             this.context= context
 

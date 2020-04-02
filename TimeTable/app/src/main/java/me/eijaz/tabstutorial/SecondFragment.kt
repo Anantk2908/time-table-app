@@ -32,25 +32,27 @@ class SecondFragment : Fragment() {
     }
 
     private fun LoadQuery(title: String) {
-        var dbManager = DbManager(this)
+        var dbManager = this.context?.let { DbManager(it? })
         val projections = arrayOf("ID", "Title", "Description")
         val selectionArgs = arrayOf(title)
-        val cursor = dbManager.Query(projections, "Title like ?", selectionArgs, "Title")
+        val cursor = dbManager?.Query(projections, "Title like ?", selectionArgs, "Title")
         listNotes.clear()
-        if (cursor.moveToFirst()) {
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
 
-            do {
-                val ID = cursor.getInt(cursor.getColumnIndex("ID"))
-                val Title = cursor.getString(cursor.getColumnIndex("Title"))
-                val Description = cursor.getString(cursor.getColumnIndex("Description"))
+                do {
+                    val ID = cursor.getInt(cursor.getColumnIndex("ID"))
+                    val Title = cursor.getString(cursor.getColumnIndex("Title"))
+                    val Description = cursor.getString(cursor.getColumnIndex("Description"))
 
-                listNotes.add(Note(ID, Title, Description))
+                    listNotes.add(Note(ID, Title, Description))
 
-            } while (cursor.moveToNext())
+                } while (cursor.moveToNext())
+            }
         }
 
         //adapter
-        var myNotesAdapter = MyNotesAdapter(this, listNotes)
+        var myNotesAdapter = this.context?.let { MyNotesAdapter(it, listNotes) }
         //set adapter
         notesLv.adapter = myNotesAdapter
 
@@ -64,7 +66,7 @@ class SecondFragment : Fragment() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?) {
         menuInflater.inflate(R.menu.main_menu, menu)
 
         //searchView
