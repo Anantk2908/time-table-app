@@ -34,7 +34,7 @@ class DbManager {
 
     inner class DatabaseHelperNotes:SQLiteOpenHelper{
 
-        var context = SecondFragment
+        var context: Context? = null
 
         constructor(context: SecondFragment):super(context, dbName, null, dbVersion){
 
