@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/TTVIEW"
+        android:id="@+id/ivPokemon"
         android:layout_width="226dp"
         android:layout_height="214dp"
         android:layout_alignParentStart="true"
@@ -19,18 +19,18 @@
 
 
     <TextView
-        android:id="@+id/WEEKVIEW"
+        android:id="@+id/txtName"
         android:layout_width="169dp"
         android:layout_height="65dp"
-        android:layout_alignBottom="@+id/TTVIEW"
+        android:layout_alignBottom="@+id/ivPokemon"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
         android:layout_marginBottom="72dp"
-        android:layout_toEndOf="@+id/TTVIEW"
-        android:layout_toRightOf="@+id/TTVIEW"
+        android:layout_toEndOf="@+id/ivPokemon"
+        android:layout_toRightOf="@+id/ivPokemon"
         android:text="WeekName"
         android:textSize="30dp"
-        android:textColor="#FF0303"/>
+        android:textColor="#0357FF"/>
 
 
 </RelativeLayout>

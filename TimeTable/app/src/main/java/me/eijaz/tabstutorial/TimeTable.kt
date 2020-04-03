@@ -1,4 +1,3 @@
 package me.eijaz.tabstutorial
 
-class TimeTable {
-}
+data class TimeTable (var name: String, var image : Int)
