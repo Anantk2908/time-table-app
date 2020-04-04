@@ -1,11 +1,11 @@
-package me.eijaz.tabstutorial
-
 import android.content.ContentValues
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_add_note.*
+import me.eijaz.tabstutorial.DbManager
+import me.eijaz.tabstutorial.R
 
 class AddNoteActivity : AppCompatActivity() {
 

@@ -1,9 +1,11 @@
 package me.eijaz.tabstutorial
 
 
+import AddNoteActivity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.SearchView
@@ -12,8 +14,8 @@ import android.view.*
 import android.widget.BaseAdapter
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_second.*
+import kotlinx.android.synthetic.main.row.*
 import kotlinx.android.synthetic.main.row.view.*
-
 
 class SecondFragment : Fragment() {
 
@@ -32,7 +34,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun LoadQuery(title: String) {
-        var dbManager = this.context?.let { DbManager(it? })
+        var dbManager = DbManager(this?)
         val projections = arrayOf("ID", "Title", "Description")
         val selectionArgs = arrayOf(title)
         val cursor = dbManager?.Query(projections, "Title like ?", selectionArgs, "Title")
@@ -66,8 +68,8 @@ class SecondFragment : Fragment() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?) {
-        menuInflater.inflate(R.menu.main_menu, menu)
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.main_menu, menu)
 
         //searchView
         val sv: SearchView = menu!!.findItem(R.id.app_bar_search).actionView as SearchView
@@ -140,7 +142,7 @@ class SecondFragment : Fragment() {
                 val s = title + "\n" + desc
                 val cb = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 cb.text = s // add to clipboard
-                Toast.makeText(this@SecondFragment, "Copied...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this?, "Copied...", Toast.LENGTH_SHORT).show()
             }
             //share btn click
             myView.shareBtn.setOnClickListener {
