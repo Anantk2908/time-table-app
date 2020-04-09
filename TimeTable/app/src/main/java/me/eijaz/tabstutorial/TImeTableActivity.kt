@@ -12,11 +12,11 @@ class TImeTableActivity : AppCompatActivity(){
 
         var listView = findViewById(R.id.listView) as ListView
         var arrTT: ArrayList<TimeTable> = ArrayList()
-        arrTT.add(TimeTable("Monday",R.drawable.Monday))
-        arrTT.add(TimeTable("Tuesday",R.drawable.Tuesday))
-        arrTT.add(TimeTable("Wednesday",R.drawable.Wednesday))
-        arrTT.add(TimeTable("Thursday",R.drawable.Thursday))
-        arrTT.add(TimeTable("Friday",R.drawable.Friday))
+        arrTT.add(TimeTable("Monday",R.drawable.monday))
+        arrTT.add(TimeTable("Tuesday",R.drawable.tuesday))
+        arrTT.add(TimeTable("Wednesday",R.drawable.wednesday))
+        arrTT.add(TimeTable("Thursday",R.drawable.thursday))
+        arrTT.add(TimeTable("Friday",R.drawable.friday))
 
         listView.adapter = CustomAdapter(applicationContext, arrTT)
 

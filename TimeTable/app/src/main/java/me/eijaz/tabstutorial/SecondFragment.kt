@@ -5,7 +5,6 @@ import AddNoteActivity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.SearchView
@@ -14,7 +13,6 @@ import android.view.*
 import android.widget.BaseAdapter
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_second.*
-import kotlinx.android.synthetic.main.row.*
 import kotlinx.android.synthetic.main.row.view.*
 
 class SecondFragment : Fragment() {
@@ -34,7 +32,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun LoadQuery(title: String) {
-        var dbManager = DbManager(this?)
+        var dbManager = DbManager(this)
         val projections = arrayOf("ID", "Title", "Description")
         val selectionArgs = arrayOf(title)
         val cursor = dbManager?.Query(projections, "Title like ?", selectionArgs, "Title")
@@ -95,10 +93,10 @@ class SecondFragment : Fragment() {
         if (item != null) {
             when (item.itemId) {
                 R.id.addNote -> {
-                    startActivity(Intent(this, AddNoteActivity::class.java))
+                    startActivity(Intent(this@SecondFragment , AddNoteActivity::class.java))
                 }
                 R.id.action_settings -> {
-                    Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this  , "Settings", Toast.LENGTH_SHORT).show()
                 }
             }
         }
