@@ -10,7 +10,7 @@ class TImeTableActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_first)
 
-        var listView = findViewById(R.id.listView) as ListView
+        var listView = findViewById<ListView>(R.id.listView)
         var arrTT: ArrayList<TimeTable> = ArrayList()
         arrTT.add(TimeTable("Monday",R.drawable.monday))
         arrTT.add(TimeTable("Tuesday",R.drawable.tuesday))
