@@ -96,7 +96,7 @@ class SecondFragment : Fragment() {
                     startActivity(Intent(this@SecondFragment , AddNoteActivity::class.java))
                 }
                 R.id.action_settings -> {
-                    Toast.makeText(this  , "Settings", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SecondFragment  , "Settings", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -121,7 +121,7 @@ class SecondFragment : Fragment() {
             myView.descTv.text = myNote.nodeDes
             //delete button click
             myView.deleteBtn.setOnClickListener {
-                var dbManager = DbManager(this.context!!)
+                var dbManager = DbManager(this@SecondFragment)
                 val selectionArgs = arrayOf(myNote.nodeID.toString())
                 dbManager.delete("ID=?", selectionArgs)
                 LoadQuery("%")
@@ -140,7 +140,7 @@ class SecondFragment : Fragment() {
                 val s = title + "\n" + desc
                 val cb = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 cb.text = s // add to clipboard
-                Toast.makeText(this?, "Copied...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this?, "Copied..."!, Toast.LENGTH_SHORT).show()
             }
             //share btn click
             myView.shareBtn.setOnClickListener {

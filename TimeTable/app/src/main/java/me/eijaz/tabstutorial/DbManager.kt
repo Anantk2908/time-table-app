@@ -28,7 +28,7 @@ class DbManager {
     var sqlDB:SQLiteDatabase?=null
 
     constructor(context: SecondFragment){
-        var db = DatabaseHelperNotes(context)
+        var db = DatabaseHelperNotes(SecondFragment)
         sqlDB = db.writableDatabase
     }
 
@@ -49,7 +49,7 @@ class DbManager {
         }
 
         override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
-            db!!.execSQL("Drop table if exists" + dbTable )
+            db!!.execSQL("Drop table if exists$dbTable")
         }
     }
 
