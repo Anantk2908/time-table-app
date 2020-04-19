@@ -27,9 +27,11 @@ class DbManager {
 
     var sqlDB:SQLiteDatabase?=null
 
-    constructor(context: SecondFragment){
-        var db = DatabaseHelperNotes(SecondFragment)
-        sqlDB = db.writableDatabase
+    constructor(context: Context?){
+        var db = context?.let { DatabaseHelperNotes(it) }
+        if (db != null) {
+            sqlDB = db.writableDatabase
+        }
     }
 
     inner class DatabaseHelperNotes:SQLiteOpenHelper{

@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 2
     defaultConfig {
-        applicationId "me.eijaz.tabstutorial"
+        applicationId "me.anant.tabstutorial"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1

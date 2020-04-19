@@ -32,7 +32,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun LoadQuery(title: String) {
-        var dbManager = DbManager(this)
+        var dbManager = DbManager(this.context)
         val projections = arrayOf("ID", "Title", "Description")
         val selectionArgs = arrayOf(title)
         val cursor = dbManager?.Query(projections, "Title like ?", selectionArgs, "Title")
@@ -93,10 +93,10 @@ class SecondFragment : Fragment() {
         if (item != null) {
             when (item.itemId) {
                 R.id.addNote -> {
-                    startActivity(Intent(this@SecondFragment , AddNoteActivity::class.java))
+                    startActivity(Intent(this.context , AddNoteActivity::class.java))
                 }
                 R.id.action_settings -> {
-                    Toast.makeText(this@SecondFragment  , "Settings", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this.context, "Settings", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -121,7 +121,7 @@ class SecondFragment : Fragment() {
             myView.descTv.text = myNote.nodeDes
             //delete button click
             myView.deleteBtn.setOnClickListener {
-                var dbManager = DbManager(this@SecondFragment)
+                var dbManager = DbManager(this.context)
                 val selectionArgs = arrayOf(myNote.nodeID.toString())
                 dbManager.delete("ID=?", selectionArgs)
                 LoadQuery("%")
@@ -140,7 +140,7 @@ class SecondFragment : Fragment() {
                 val s = title + "\n" + desc
                 val cb = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 cb.text = s // add to clipboard
-                Toast.makeText(this?, "Copied..."!, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, "Copied...", Toast.LENGTH_SHORT ).show()
             }
             //share btn click
             myView.shareBtn.setOnClickListener {
@@ -176,7 +176,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun GoToUpdateFun(myNote: Note) {
-        var intent = Intent(this, AddNoteActivity::class.java)
+        var intent = Intent(this.context, AddNoteActivity::class.java)
         intent.putExtra("ID", myNote.nodeID) //put id
         intent.putExtra("name", myNote.nodeName) //ut name
         intent.putExtra("des", myNote.nodeDes) //put description
